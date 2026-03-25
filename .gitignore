@@ -1,0 +1,13 @@
+/data/
+/runs/
+/slurm/
+/TODOs.md
+/.vscode
+/.idea
+/*.log
+/*.tmp
+*.bak
+*.swp
+.DS_Store
+
+main.ipynb

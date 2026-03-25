@@ -1,0 +1,50 @@
+[experiment]
+seed = 42
+device = "mps"
+
+[paths]
+sets_root = "data/sets"
+run_dir = "runs"
+
+[data]
+image_exts = [".png"]
+normalize_image = true
+binarize_mask = true
+mask_threshold = 0.5
+quadrant_crop_N = 1
+apply_edge_maps = true
+train_albumentations = true
+train_augment = true
+val_augment = false
+
+[model]
+name = "unet"
+in_channels = 6
+out_channels = 1
+base_channels = 16
+num_layers = 6
+simple_encoder = true
+dropout_p = 0.0
+
+[optimizer]
+lr = 1e-4
+weight_decay = 0.1
+
+#[scheduler]
+#name = "cosine"
+#t_max = 50
+
+[loss]
+# dice (f1), iou, focal
+loss_train = "focal"
+loss_valid = ["dice", "focal", "iou", "pcc"]
+use_edge_detection = false
+
+[training]
+epochs = 1000
+batch_size = 8
+num_workers = 0
+
+[ensemble]
+sets = ["set_0", "set_1", "set_2", "set_3"]
+threshold = 0.5
